@@ -1,0 +1,1377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Indian Bank – IndOASIS | Hamza Khan</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #1a2b6b;
+    --navy-dark: #0f1a47;
+    --navy-mid: #1e3480;
+    --gold: #f5a623;
+    --gold-dark: #d4870a;
+    --white: #ffffff;
+    --gray-100: #f7f8fc;
+    --gray-200: #e8eaf2;
+    --gray-400: #9ba3c0;
+    --gray-600: #5a6180;
+    --success: #27ae60;
+    --danger: #e74c3c;
+    --vibe-bg: #0d1117;
+    --vibe-card: #161b27;
+    --vibe-purple: #6c63ff;
+    --vibe-text: #e8eaf2;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: #e0e5f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden;
+  }
+
+  /* Phone shell */
+  .phone {
+    width: 390px;
+    height: 844px;
+    background: white;
+    border-radius: 48px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 40px 80px rgba(0,0,0,0.35), 0 0 0 1px rgba(0,0,0,0.1);
+  }
+
+  .screen {
+    position: absolute;
+    inset: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    display: none;
+    flex-direction: column;
+    background: var(--white);
+    scrollbar-width: none;
+  }
+  .screen::-webkit-scrollbar { display: none; }
+  .screen.active { display: flex; }
+
+  /* ─── SPLASH ─── */
+  #splash {
+    background: var(--navy);
+    justify-content: center;
+    align-items: center;
+    animation: splashFade 0.6s ease;
+  }
+  @keyframes splashFade { from { opacity: 0; } to { opacity: 1; } }
+  .splash-logo { display: flex; flex-direction: column; align-items: center; gap: 20px; }
+  .splash-icon {
+    width: 100px; height: 100px;
+    background: var(--gold);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 52px;
+    animation: popIn 0.8s cubic-bezier(0.175,0.885,0.32,1.275) 0.3s both;
+  }
+  @keyframes popIn { from { transform: scale(0.3); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+  .splash-title { color: var(--white); font-size: 26px; font-weight: 700; animation: slideUp 0.6s ease 0.6s both; }
+  .splash-sub { color: var(--gold); font-size: 13px; letter-spacing: 2px; text-transform: uppercase; animation: slideUp 0.6s ease 0.8s both; }
+  @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* ─── ONBOARDING ─── */
+  #onboard {
+    background: var(--white);
+  }
+  .onboard-hero {
+    background: var(--navy);
+    border-radius: 0 0 40px 40px;
+    padding: 48px 24px 32px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .onboard-hero::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 200px; height: 200px;
+    background: var(--gold);
+    border-radius: 50%;
+    opacity: 0.12;
+  }
+  .bank-badge {
+    background: white;
+    border-radius: 16px;
+    padding: 12px 20px;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  }
+  .bank-badge-icon { font-size: 28px; }
+  .bank-badge-text { text-align: left; }
+  .bank-badge-hi { font-size: 11px; color: var(--navy); font-family: 'Noto Sans Devanagari', sans-serif; font-weight: 700; }
+  .bank-badge-en { font-size: 14px; color: var(--navy); font-weight: 700; }
+  .allahabad-tag {
+    background: rgba(255,255,255,0.12);
+    border-radius: 20px;
+    padding: 6px 16px;
+    color: var(--gold);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+    display: inline-block;
+  }
+  .merger-text { color: rgba(255,255,255,0.7); font-size: 12px; }
+
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    background: var(--gold);
+    padding: 14px 8px;
+  }
+  .stat-item { text-align: center; }
+  .stat-icon { font-size: 22px; display: block; }
+  .stat-num { font-size: 11px; font-weight: 700; color: var(--navy); display: block; }
+  .stat-label { font-size: 9px; color: var(--navy-dark); display: block; }
+
+  .onboard-body { padding: 36px 28px; flex: 1; display: flex; flex-direction: column; }
+  .onboard-headline { font-size: 32px; font-weight: 800; color: var(--navy); line-height: 1.1; }
+  .onboard-sub { color: var(--gray-600); font-size: 14px; margin-top: 10px; line-height: 1.6; }
+  .dots { display: flex; gap: 8px; margin-top: 20px; }
+  .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--gold); }
+  .dot:not(:first-child) { background: var(--gray-200); }
+
+  /* ─── STEP HEADER ─── */
+  .step-header {
+    background: var(--navy);
+    padding: 20px 24px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .step-header-title { color: var(--white); font-size: 18px; font-weight: 700; flex: 1; }
+  .step-logo { font-size: 28px; }
+
+  .stepper {
+    display: flex;
+    align-items: center;
+    padding: 24px 28px 8px;
+  }
+  .step-node {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+  .step-circle {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    border: 2px solid var(--gray-200);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 600;
+    color: var(--gray-400);
+    background: white;
+  }
+  .step-circle.done { background: var(--navy); border-color: var(--navy); color: white; }
+  .step-circle.active { background: var(--navy); border-color: var(--navy); color: white; }
+  .step-label { font-size: 10px; color: var(--gray-400); white-space: nowrap; }
+  .step-label.active { color: var(--navy); font-weight: 600; }
+  .step-line { flex: 1; height: 2px; background: var(--gray-200); margin: 0 4px; margin-bottom: 18px; }
+  .step-line.done { background: var(--navy); }
+
+  .step-body { padding: 20px 28px; flex: 1; display: flex; flex-direction: column; gap: 16px; }
+
+  /* ─── FORM INPUTS ─── */
+  .field-label { font-size: 12px; color: var(--gray-600); font-weight: 500; margin-bottom: 4px; }
+  .input-wrap {
+    display: flex;
+    align-items: center;
+    border: 1.5px solid var(--gray-200);
+    border-radius: 14px;
+    padding: 0 16px;
+    height: 54px;
+    background: white;
+    transition: border-color 0.2s;
+  }
+  .input-wrap:focus-within { border-color: var(--navy); box-shadow: 0 0 0 3px rgba(26,43,107,0.08); }
+  .input-prefix { color: var(--gray-600); font-size: 14px; font-weight: 600; margin-right: 8px; border-right: 1px solid var(--gray-200); padding-right: 10px; }
+  .input-wrap input {
+    border: none; outline: none; flex: 1;
+    font-size: 15px; font-family: 'Poppins', sans-serif;
+    color: var(--navy); background: transparent;
+  }
+  .input-wrap input::placeholder { color: var(--gray-400); }
+  .pw-toggle { cursor: pointer; color: var(--gray-400); font-size: 18px; }
+
+  /* ─── OTP ─── */
+  .otp-row { display: flex; gap: 12px; justify-content: center; margin: 8px 0; }
+  .otp-box {
+    width: 64px; height: 64px;
+    border: 2px solid var(--gray-200);
+    border-radius: 16px;
+    font-size: 24px; font-weight: 700;
+    text-align: center;
+    color: var(--navy);
+    outline: none;
+    font-family: 'Poppins', sans-serif;
+    transition: border-color 0.2s;
+    background: white;
+  }
+  .otp-box:focus { border-color: var(--navy); box-shadow: 0 0 0 3px rgba(26,43,107,0.1); }
+  .resend-text { text-align: center; font-size: 13px; color: var(--gray-600); }
+  .resend-link { color: var(--navy); font-weight: 600; cursor: pointer; text-decoration: none; }
+
+  /* ─── BUTTONS ─── */
+  .btn-primary {
+    background: var(--navy);
+    color: white;
+    border: none;
+    border-radius: 16px;
+    height: 56px;
+    font-size: 16px;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+    cursor: pointer;
+    width: 100%;
+    transition: transform 0.1s, box-shadow 0.2s;
+    box-shadow: 0 4px 20px rgba(26,43,107,0.3);
+  }
+  .btn-primary:active { transform: scale(0.97); }
+  .btn-outline {
+    background: white;
+    color: var(--navy);
+    border: 1.5px solid var(--navy);
+    border-radius: 16px;
+    height: 52px;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+    cursor: pointer;
+    flex: 1;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    transition: background 0.2s;
+  }
+  .btn-outline:hover { background: var(--gray-100); }
+  .btn-vibe {
+    background: var(--gold);
+    border: none;
+    border-radius: 16px;
+    width: 80px; height: 80px;
+    cursor: pointer;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 4px;
+    font-size: 11px; font-weight: 600; color: var(--navy);
+    font-family: 'Poppins', sans-serif;
+    box-shadow: 0 4px 16px rgba(245,166,35,0.4);
+    margin: 0 auto;
+    transition: transform 0.2s;
+  }
+  .btn-vibe:active { transform: scale(0.93); }
+  .back-link { text-align: center; font-size: 13px; color: var(--gray-600); cursor: pointer; margin-top: 8px; }
+  .back-link:hover { color: var(--navy); }
+
+  /* ─── LOGIN (WELCOME BACK) ─── */
+  .login-hero {
+    background: var(--navy);
+    border-radius: 0 0 50% 50% / 0 0 40px 40px;
+    padding: 48px 32px 60px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .login-hero::after {
+    content: '';
+    position: absolute;
+    bottom: -30px; left: 50%;
+    transform: translateX(-50%);
+    width: 80px; height: 80px;
+    background: var(--gold);
+    border-radius: 50%;
+    opacity: 0.15;
+  }
+  .login-logo-wrap { display: flex; justify-content: center; align-items: center; gap: 12px; margin-bottom: 8px; }
+  .login-logo-icon { font-size: 44px; }
+  .login-logo-text { text-align: left; }
+  .login-logo-hi { font-family: 'Noto Sans Devanagari', sans-serif; font-size: 16px; color: var(--gold); font-weight: 700; }
+  .login-logo-en { font-size: 20px; color: white; font-weight: 700; }
+  .login-hero h2 { color: white; font-size: 26px; font-weight: 700; margin-top: 12px; }
+  .login-hero p { color: rgba(255,255,255,0.6); font-size: 13px; font-style: italic; }
+
+  .login-form { padding: 32px 28px 24px; display: flex; flex-direction: column; gap: 16px; }
+
+  .remember-row { display: flex; align-items: center; justify-content: space-between; }
+  .remember-check { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--gray-600); cursor: pointer; }
+  .remember-check input[type=checkbox] { accent-color: var(--navy); width: 16px; height: 16px; }
+  .forgot-link { font-size: 13px; color: var(--navy); font-weight: 600; cursor: pointer; }
+
+  .divider { display: flex; align-items: center; gap: 12px; color: var(--gray-400); font-size: 12px; }
+  .divider::before, .divider::after { content: ''; flex: 1; height: 1px; background: var(--gray-200); }
+
+  .biometric-row { display: flex; gap: 12px; }
+  .help-note { text-align: center; font-size: 11px; color: var(--gray-400); padding-bottom: 16px; }
+
+  /* ─── HOME ─── */
+  .home-header {
+    background: var(--navy);
+    padding: 20px 24px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .avatar {
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    background: var(--gold);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px;
+    flex-shrink: 0;
+  }
+  .greeting { color: white; font-size: 17px; font-weight: 600; flex: 1; }
+  .header-icons { display: flex; gap: 12px; }
+  .icon-btn { background: rgba(255,255,255,0.15); border: none; border-radius: 50%; width: 38px; height: 38px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 18px; color: white; position: relative; transition: background 0.2s; }
+  .icon-btn:hover { background: rgba(255,255,255,0.25); }
+  .badge { position: absolute; top: 4px; right: 4px; width: 10px; height: 10px; background: var(--danger); border-radius: 50%; border: 2px solid var(--navy); }
+
+  .card-section {
+    background: var(--navy);
+    padding: 0 24px 32px;
+  }
+  .credit-card {
+    background: linear-gradient(135deg, #1a3a8f 0%, #0d2060 60%);
+    border-radius: 24px;
+    padding: 22px 24px;
+    color: white;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+  }
+  .card-circle {
+    position: absolute;
+    top: -20px; right: -30px;
+    width: 140px; height: 140px;
+    background: var(--gold);
+    border-radius: 50%;
+    opacity: 0.7;
+  }
+  .card-circle2 {
+    position: absolute;
+    top: 30px; right: 30px;
+    width: 100px; height: 100px;
+    background: #3a6abf;
+    border-radius: 50%;
+    opacity: 0.5;
+  }
+  .card-name { font-size: 18px; font-weight: 700; position: relative; z-index: 1; }
+  .card-type { font-size: 11px; opacity: 0.7; position: relative; z-index: 1; margin-top: 2px; }
+  .card-number { font-size: 13px; opacity: 0.8; position: relative; z-index: 1; margin-top: 16px; letter-spacing: 2px; }
+  .card-bottom { display: flex; justify-content: space-between; align-items: flex-end; position: relative; z-index: 1; margin-top: 12px; }
+  .card-balance { font-size: 22px; font-weight: 700; }
+  .card-scheme { font-size: 22px; font-weight: 800; font-style: italic; opacity: 0.9; }
+
+  .services-section { padding: 24px 20px; background: var(--gray-100); flex: 1; }
+  .services-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; }
+  .service-tile {
+    background: white;
+    border-radius: 16px;
+    padding: 16px 8px 12px;
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+    cursor: pointer;
+    transition: transform 0.15s, box-shadow 0.15s;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    border: 1px solid var(--gray-200);
+  }
+  .service-tile:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.1); }
+  .service-tile:active { transform: scale(0.96); }
+  .service-icon { font-size: 28px; }
+  .service-label { font-size: 11px; font-weight: 600; color: var(--navy); text-align: center; line-height: 1.3; }
+
+  /* ─── BOTTOM NAV ─── */
+  .bottom-nav {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    background: white;
+    border-top: 1px solid var(--gray-200);
+    display: flex;
+    padding: 8px 0 20px;
+    z-index: 100;
+  }
+  .nav-item {
+    flex: 1;
+    display: flex; flex-direction: column; align-items: center; gap: 3px;
+    cursor: pointer;
+    padding: 6px 0;
+    font-size: 10px; color: var(--gray-400); font-weight: 500;
+    transition: color 0.2s;
+  }
+  .nav-item.active .nav-icon-wrap {
+    background: var(--navy);
+    border-radius: 20px;
+    padding: 6px 18px;
+  }
+  .nav-item.active { color: var(--navy); }
+  .nav-icon { font-size: 20px; }
+  .nav-item.active .nav-icon { color: white; }
+
+  /* ─── TRANSACTIONS ─── */
+  .page-header {
+    background: var(--white);
+    padding: 20px 24px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--gray-200);
+    position: sticky; top: 0; z-index: 10;
+  }
+  .page-title { font-size: 18px; font-weight: 700; color: var(--navy); }
+  .icon-row { display: flex; gap: 8px; }
+  .icon-circle { width: 36px; height: 36px; border-radius: 50%; background: var(--gray-100); display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 16px; border: 1px solid var(--gray-200); }
+
+  .txn-list { padding: 12px 20px 100px; display: flex; flex-direction: column; gap: 2px; }
+  .txn-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--gray-100);
+  }
+  .txn-icon {
+    width: 46px; height: 46px;
+    border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px;
+    flex-shrink: 0;
+  }
+  .txn-icon.green { background: #e8f8ef; }
+  .txn-icon.red { background: #ffeaea; }
+  .txn-icon.yellow { background: #fff8e6; }
+  .txn-info { flex: 1; }
+  .txn-name { font-size: 14px; font-weight: 600; color: var(--navy); }
+  .txn-sub { font-size: 11px; color: var(--gray-400); margin-top: 2px; }
+  .txn-right { text-align: right; }
+  .txn-amount { font-size: 15px; font-weight: 700; color: var(--navy); }
+  .txn-status { display: inline-block; font-size: 10px; font-weight: 600; border-radius: 20px; padding: 2px 8px; margin-top: 3px; }
+  .status-ok { background: #e8f8ef; color: var(--success); }
+  .status-fail { background: #ffeaea; color: var(--danger); }
+
+  /* ─── PAYMENT BILLS ─── */
+  .bill-list { padding: 16px 20px 100px; display: flex; flex-direction: column; gap: 12px; }
+  .bill-card {
+    background: white;
+    border-radius: 20px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    cursor: pointer;
+    border: 1px solid var(--gray-200);
+    transition: transform 0.15s;
+  }
+  .bill-card:hover { transform: translateY(-2px); }
+  .bill-left { display: flex; flex-direction: column; }
+  .bill-title { font-size: 16px; font-weight: 700; color: var(--navy); }
+  .bill-sub { font-size: 12px; color: var(--gray-600); margin-top: 3px; }
+  .bill-image { font-size: 56px; }
+
+  /* ─── PAYMENT SCREEN ─── */
+  .payment-detail { padding: 20px 24px 100px; display: flex; flex-direction: column; gap: 16px; }
+  .detail-card { background: white; border-radius: 20px; padding: 20px; box-shadow: 0 2px 12px rgba(0,0,0,0.07); border: 1px solid var(--gray-200); }
+  .detail-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--gray-100); }
+  .detail-row:last-child { border-bottom: none; }
+  .detail-label { font-size: 13px; color: var(--gray-600); }
+  .detail-val { font-size: 13px; font-weight: 600; color: var(--navy); text-align: right; max-width: 200px; }
+  .total-row { display: flex; justify-content: space-between; font-size: 18px; font-weight: 700; color: var(--navy); margin-top: 8px; }
+  .total-amount { color: var(--danger); }
+
+  /* ─── PAYMENT HISTORY ─── */
+  .filter-tabs { display: flex; gap: 8px; padding: 16px 20px; overflow-x: auto; scrollbar-width: none; }
+  .filter-tab {
+    padding: 8px 18px;
+    border-radius: 20px;
+    border: 1.5px solid var(--gray-200);
+    font-size: 13px; font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    color: var(--gray-600);
+    background: white;
+    transition: all 0.2s;
+  }
+  .filter-tab.active { background: var(--navy); color: white; border-color: var(--navy); }
+
+  .history-list { padding: 0 20px 100px; display: flex; flex-direction: column; gap: 10px; }
+  .history-card { background: white; border-radius: 16px; padding: 16px 18px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); border: 1px solid var(--gray-200); }
+  .history-month { font-size: 16px; font-weight: 700; color: var(--navy); }
+  .history-date { font-size: 12px; color: var(--gray-400); float: right; }
+  .history-row { display: flex; justify-content: space-between; margin-top: 8px; font-size: 13px; }
+  .history-status-ok { color: var(--success); font-weight: 600; }
+  .history-status-fail { color: var(--danger); font-weight: 600; }
+
+  /* ─── NOTIFICATION PANEL ─── */
+  .notif-list { padding: 12px 20px; display: flex; flex-direction: column; gap: 2px; }
+  .notif-item { display: flex; align-items: flex-start; gap: 12px; padding: 14px 0; border-bottom: 1px solid var(--gray-100); }
+  .notif-avatar { width: 42px; height: 42px; border-radius: 50%; background: var(--gray-200); display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; overflow: hidden; }
+  .notif-avatar img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+  .notif-text { flex: 1; font-size: 13px; color: var(--navy); line-height: 1.4; }
+  .notif-text span { color: var(--navy-mid); font-weight: 700; }
+  .notif-time { font-size: 11px; color: var(--gray-400); display: block; margin-top: 3px; }
+  .notif-pay { background: var(--navy); color: white; border: none; border-radius: 8px; padding: 6px 14px; font-size: 12px; font-weight: 600; cursor: pointer; font-family: 'Poppins', sans-serif; }
+
+  .faq-section { padding: 20px 20px 100px; }
+  .faq-title { font-size: 16px; font-weight: 700; color: var(--navy); margin-bottom: 12px; }
+  .faq-item { border: 1px solid var(--gray-200); border-radius: 12px; margin-bottom: 8px; overflow: hidden; }
+  .faq-q { display: flex; justify-content: space-between; align-items: center; padding: 14px 16px; cursor: pointer; font-size: 13px; color: var(--navy); font-weight: 500; background: white; }
+  .faq-arrow { color: var(--gray-400); font-size: 16px; transition: transform 0.2s; }
+  .faq-item.open .faq-arrow { transform: rotate(180deg); }
+  .faq-a { padding: 0 16px; max-height: 0; overflow: hidden; transition: max-height 0.3s ease, padding 0.3s; font-size: 12px; color: var(--gray-600); background: var(--gray-100); }
+  .faq-item.open .faq-a { max-height: 200px; padding: 12px 16px; }
+
+  /* ─── SUCCESS PAGE ─── */
+  #success { justify-content: flex-start; }
+  .success-body { padding: 48px 28px; display: flex; flex-direction: column; align-items: center; gap: 16px; }
+  .success-circle { width: 80px; height: 80px; border-radius: 50%; background: #e8f8ef; display: flex; align-items: center; justify-content: center; font-size: 36px; animation: popIn 0.8s cubic-bezier(0.175,0.885,0.32,1.275) 0.2s both; }
+  .success-title { font-size: 22px; font-weight: 700; color: var(--navy); }
+  .success-sub { font-size: 14px; color: var(--gray-600); text-align: center; }
+
+  /* ─── VIBE MODE ─── */
+  #vibe {
+    background: var(--vibe-bg);
+    color: var(--vibe-text);
+  }
+  .vibe-header {
+    padding: 20px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .vibe-badge { background: rgba(108,99,255,0.2); border: 1px solid rgba(108,99,255,0.4); color: var(--vibe-purple); border-radius: 20px; padding: 4px 14px; font-size: 12px; font-weight: 600; }
+  .vibe-icons { display: flex; gap: 10px; }
+  .vibe-icon-btn { background: rgba(255,255,255,0.07); border: none; border-radius: 50%; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; font-size: 16px; cursor: pointer; color: var(--vibe-text); position: relative; }
+
+  .vibe-user { padding: 20px 24px; display: flex; align-items: center; gap: 14px; }
+  .vibe-avatar { width: 56px; height: 56px; border-radius: 50%; background: var(--gold); display: flex; align-items: center; justify-content: center; font-size: 26px; border: 3px solid rgba(255,255,255,0.15); }
+  .vibe-user-name { font-size: 20px; font-weight: 700; }
+  .vibe-user-date { font-size: 12px; color: rgba(255,255,255,0.4); margin-top: 2px; }
+
+  .vibe-balance-card {
+    margin: 0 20px;
+    background: linear-gradient(135deg, #1a2b6b 0%, #2a1a6b 100%);
+    border-radius: 20px;
+    padding: 20px 22px;
+    border: 1px solid rgba(255,255,255,0.1);
+    position: relative;
+    overflow: hidden;
+  }
+  .vibe-balance-card::before {
+    content: '';
+    position: absolute;
+    top: -40px; right: -40px;
+    width: 150px; height: 150px;
+    background: radial-gradient(circle, rgba(108,99,255,0.3) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .vibe-acc-label { font-size: 12px; color: rgba(255,255,255,0.5); font-weight: 600; letter-spacing: 1px; text-transform: uppercase; }
+  .vibe-acc-num { font-size: 13px; color: rgba(255,255,255,0.4); margin-top: 2px; }
+  .vibe-bal-label { font-size: 11px; color: rgba(255,255,255,0.5); margin-top: 16px; text-transform: uppercase; letter-spacing: 1px; }
+  .vibe-amount { font-size: 30px; font-weight: 800; margin-top: 4px; }
+  .vibe-eye { position: absolute; top: 20px; right: 20px; background: rgba(255,255,255,0.1); border: none; border-radius: 50%; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; font-size: 16px; cursor: pointer; color: white; }
+
+  .vibe-services { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; padding: 16px 20px; }
+  .vibe-tile {
+    background: #1c2236;
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 16px;
+    padding: 16px 8px 12px;
+    display: flex; flex-direction: column; align-items: center; gap: 10px;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .vibe-tile:hover { background: rgba(255,255,255,0.12); }
+  .vibe-tile-icon {
+    width: 46px; height: 46px;
+    border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px;
+    background: rgba(255,255,255,0.08);
+  }
+  .vibe-tile-icon.globe  { background: #163d6b; }
+  .vibe-tile-icon.send   { background: #164a6b; }
+  .vibe-tile-icon.atm    { background: #0e4a52; }
+  .vibe-tile-icon.phone  { background: #1a2a6b; }
+  .vibe-tile-icon.bill   { background: #2a1a5a; }
+  .vibe-tile-icon.topup  { background: #0a3d3d; }
+  .vibe-tile-label { font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.75); }
+
+  .vibe-quick-send { padding: 0 20px 16px; }
+  .vibe-section-title { font-size: 14px; font-weight: 700; margin-bottom: 14px; }
+  .quick-contacts { display: flex; gap: 16px; overflow-x: auto; scrollbar-width: none; padding-bottom: 4px; }
+  .contact-item { display: flex; flex-direction: column; align-items: center; gap: 6px; cursor: pointer; flex-shrink: 0; }
+  .contact-avatar { width: 50px; height: 50px; border-radius: 50%; background: var(--gold); display: flex; align-items: center; justify-content: center; font-size: 22px; border: 2px solid rgba(255,255,255,0.1); }
+  .contact-name { font-size: 11px; color: rgba(255,255,255,0.6); }
+  .add-contact { width: 50px; height: 50px; border-radius: 50%; background: rgba(255,255,255,0.07); border: 1.5px dashed rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; font-size: 22px; color: rgba(255,255,255,0.4); cursor: pointer; }
+
+  .vibe-bottom-nav {
+    position: sticky;
+    bottom: 0; left: 0; right: 0;
+    background: rgba(13,17,23,0.98);
+    border-top: 1px solid rgba(255,255,255,0.07);
+    display: flex;
+    padding: 10px 0 22px;
+    backdrop-filter: blur(10px);
+    z-index: 10;
+    flex-shrink: 0;
+  }
+  .vibe-nav-item {
+    flex: 1;
+    display: flex; flex-direction: column; align-items: center; gap: 3px;
+    cursor: pointer;
+    font-size: 10px; color: rgba(255,255,255,0.35); font-weight: 500;
+    padding: 4px 0;
+  }
+  .vibe-nav-item.active { color: var(--vibe-purple); }
+  .vibe-nav-icon { font-size: 20px; }
+
+  /* ─── TRANSFER ─── */
+  .transfer-section { padding: 20px 24px 100px; display: flex; flex-direction: column; gap: 16px; }
+  .beneficiary-list { display: flex; flex-direction: column; gap: 10px; }
+  .beneficiary-card {
+    background: white;
+    border-radius: 16px;
+    padding: 14px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border: 1px solid var(--gray-200);
+    cursor: pointer;
+    transition: transform 0.15s;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  }
+  .beneficiary-card:hover { transform: translateY(-2px); }
+  .bene-avatar { width: 44px; height: 44px; border-radius: 50%; background: var(--navy); display: flex; align-items: center; justify-content: center; font-size: 18px; color: white; font-weight: 700; flex-shrink: 0; }
+  .bene-name { font-size: 14px; font-weight: 600; color: var(--navy); }
+  .bene-acc { font-size: 11px; color: var(--gray-400); margin-top: 2px; }
+  .bene-send { background: var(--navy); color: white; border: none; border-radius: 20px; padding: 6px 16px; font-size: 12px; font-weight: 600; cursor: pointer; font-family: 'Poppins', sans-serif; margin-left: auto; }
+
+  /* ─── PROFILE BAR ─── */
+  .profile-section { padding: 20px 24px 100px; display: flex; flex-direction: column; gap: 16px; }
+  .profile-card { background: white; border-radius: 20px; padding: 24px; display: flex; align-items: center; gap: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); border: 1px solid var(--gray-200); }
+  .profile-avatar { width: 64px; height: 64px; border-radius: 50%; background: var(--navy); display: flex; align-items: center; justify-content: center; font-size: 28px; color: white; flex-shrink: 0; }
+  .profile-name { font-size: 18px; font-weight: 700; color: var(--navy); }
+  .profile-acc { font-size: 12px; color: var(--gray-400); margin-top: 3px; }
+  .profile-edit { background: var(--gold); border: none; border-radius: 20px; padding: 6px 14px; font-size: 12px; font-weight: 600; cursor: pointer; font-family: 'Poppins', sans-serif; color: var(--navy); margin-left: auto; }
+  .menu-section { background: white; border-radius: 20px; overflow: hidden; border: 1px solid var(--gray-200); box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+  .menu-item { display: flex; align-items: center; gap: 12px; padding: 16px 20px; border-bottom: 1px solid var(--gray-100); cursor: pointer; transition: background 0.15s; }
+  .menu-item:last-child { border-bottom: none; }
+  .menu-item:hover { background: var(--gray-100); }
+  .menu-icon { font-size: 20px; width: 32px; text-align: center; }
+  .menu-label { font-size: 14px; color: var(--navy); font-weight: 500; flex: 1; }
+  .menu-arrow { color: var(--gray-400); font-size: 16px; }
+
+  /* TOAST */
+  .toast {
+    position: absolute;
+    bottom: 110px; left: 50%; transform: translateX(-50%) translateY(20px);
+    background: var(--navy);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 500;
+    opacity: 0;
+    transition: all 0.3s;
+    white-space: nowrap;
+    z-index: 999;
+    pointer-events: none;
+  }
+  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+  /* Section title */
+  .section-title-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
+  .section-title { font-size: 14px; font-weight: 700; color: var(--navy); }
+  .see-all { font-size: 12px; color: var(--gold-dark); font-weight: 600; cursor: pointer; }
+
+  /* VIBE TXNS */
+  .vibe-history-card { margin: 0 20px 12px; background: linear-gradient(135deg, #1a1a6b, #6c1a9b); border-radius: 20px; padding: 18px 20px; }
+  .vibe-hist-title { font-size: 14px; font-weight: 700; margin-bottom: 14px; }
+  .vibe-hist-item { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+  .vibe-hist-logo { width: 36px; height: 36px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 700; color: var(--navy); flex-shrink: 0; }
+  .vibe-hist-name { flex: 1; font-size: 14px; font-weight: 600; }
+  .vibe-hist-amount { font-size: 15px; font-weight: 700; }
+  .vibe-stats-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 0 20px 16px; }
+  .vibe-stat-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 16px; }
+  .vibe-stat-amount { font-size: 22px; font-weight: 800; }
+  .vibe-stat-label { font-size: 11px; color: rgba(255,255,255,0.5); margin-top: 4px; }
+  .vibe-bills-section { padding: 0 20px 24px; }
+  .vibe-bills-title { font-size: 14px; font-weight: 700; margin-bottom: 12px; }
+  .vibe-bills-grid { display: flex; gap: 10px; }
+  .vibe-bill-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 14px; display: flex; flex-direction: column; align-items: center; gap: 8px; flex: 1; cursor: pointer; }
+  .vibe-bill-icon { font-size: 28px; }
+  .vibe-bill-name { font-size: 12px; color: rgba(255,255,255,0.7); text-align: center; }
+  .vibe-bill-amt { font-size: 14px; font-weight: 700; }
+</style>
+</head>
+<body>
+<div class="phone" id="app">
+
+  <!-- ─── SPLASH ─── -->
+  <div class="screen active" id="splash">
+    <div class="splash-logo">
+      <div class="splash-icon">🏦</div>
+      <div class="splash-title">Indian Bank</div>
+      <div class="splash-sub">IndOASIS</div>
+    </div>
+  </div>
+
+  <!-- ─── ONBOARDING ─── -->
+  <div class="screen" id="onboard">
+    <div class="onboard-hero">
+      <div class="bank-badge">
+        <div class="bank-badge-icon">🏦</div>
+        <div class="bank-badge-text">
+          <div class="bank-badge-hi">इंडियन बैंक</div>
+          <div class="bank-badge-en">Indian Bank</div>
+        </div>
+      </div>
+      <div class="allahabad-tag">✦ ALLAHABAD BANK ✦</div>
+      <p class="merger-text">Indian Bank and Allahabad Bank are now one</p>
+    </div>
+    <div class="stats-row">
+      <div class="stat-item"><span class="stat-icon">😊</span><span class="stat-num">10.9Cr</span><span class="stat-label">Customers</span></div>
+      <div class="stat-item"><span class="stat-icon">🏧</span><span class="stat-num">3140</span><span class="stat-label">ATM</span></div>
+      <div class="stat-item"><span class="stat-icon">🏛️</span><span class="stat-num">5880</span><span class="stat-label">Branches</span></div>
+      <div class="stat-item"><span class="stat-icon">🖥️</span><span class="stat-num">2091</span><span class="stat-label">BNA</span></div>
+    </div>
+    <div class="onboard-body">
+      <div class="onboard-headline">Let's get Started</div>
+      <p class="onboard-sub">Your trusted banking partner for every financial need. Secure, swift, and smart.</p>
+      <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+      <div style="flex:1"></div>
+      <button class="btn-primary" onclick="showScreen('login')">Get Started</button>
+      <p style="text-align:center;font-size:11px;color:var(--gray-400);margin-top:16px;">Indian Bank LTD &nbsp;·&nbsp; All rights reserved</p>
+    </div>
+  </div>
+
+  <!-- ─── LOGIN ─── -->
+  <div class="screen" id="login">
+    <div class="login-hero">
+      <div class="login-logo-wrap">
+        <div class="login-logo-icon">🏦</div>
+        <div class="login-logo-text">
+          <div class="login-logo-hi">इंडियन बैंक</div>
+          <div class="login-logo-en">Indian Bank</div>
+        </div>
+      </div>
+      <h2>Welcome Back</h2>
+      <p>Login to continue</p>
+    </div>
+    <div class="login-form">
+      <div>
+        <div class="field-label">Mobile Number</div>
+        <div class="input-wrap">
+          <span class="input-prefix">+91</span>
+          <input type="tel" placeholder="Mobile number" id="loginMobile" maxlength="10">
+        </div>
+      </div>
+      <div>
+        <div class="field-label">Password</div>
+        <div class="input-wrap">
+          <input type="password" placeholder="Password" id="loginPassword">
+          <span class="pw-toggle" onclick="togglePw()">👁</span>
+        </div>
+      </div>
+      <div class="remember-row">
+        <label class="remember-check"><input type="checkbox"> Remember me</label>
+        <span class="forgot-link">Forgot Password?</span>
+      </div>
+      <button class="btn-primary" onclick="doLogin()">Login</button>
+      <div class="divider">or continue with</div>
+      <div class="biometric-row">
+        <button class="btn-outline" onclick="toast('Fingerprint auth initiated')">🫁 Fingerprint</button>
+        <button class="btn-outline" onclick="toast('Face ID initiated')">🛡️ Face ID</button>
+      </div>
+      <div style="display:flex;justify-content:center;">
+        <button class="btn-vibe" onclick="showScreen('vibe')">✦ <span style="font-size:13px;">Vibe Mode</span></button>
+      </div>
+      <p class="help-note">Help and Support<br><span style="color:var(--gray-400)">Note: All OTPs will be sent to your contact detail</span></p>
+      <p style="text-align:center;font-size:13px;color:var(--gray-600);">New user? <span style="color:var(--navy);font-weight:700;cursor:pointer;" onclick="showScreen('register')">Register here</span></p>
+    </div>
+  </div>
+
+  <!-- ─── REGISTER: MOBILE ─── -->
+  <div class="screen" id="register">
+    <div class="step-header">
+      <div class="step-header-title">Welcome to Indian Bank</div>
+      <div class="step-logo">🏦</div>
+    </div>
+    <div class="stepper">
+      <div class="step-node"><div class="step-circle active">1</div><span class="step-label active">Mobile</span></div>
+      <div class="step-line"></div>
+      <div class="step-node"><div class="step-circle">2</div><span class="step-label">Verify</span></div>
+      <div class="step-line"></div>
+      <div class="step-node"><div class="step-circle">3</div><span class="step-label">Profile</span></div>
+      <div class="step-line"></div>
+      <div class="step-node"><div class="step-circle">4</div><span class="step-label">Complete</span></div>
+    </div>
+    <div class="step-body">
+      <p style="font-size:14px;color:var(--gray-600);">We'll send a verification code to this number</p>
+      <div class="input-wrap">
+        <span class="input-prefix">+91</span>
+        <input type="tel" placeholder="10-digit mobile number" id="regMobile" maxlength="10">
+      </div>
+      <div style="flex:1"></div>
+      <button class="btn-primary" onclick="showScreen('verify')">Continue</button>
+      <p class="back-link" onclick="showScreen('login')">← Back</p>
+    </div>
+  </div>
+
+  <!-- ─── REGISTER: OTP ─── -->
+  <div class="screen" id="verify">
+    <div class="step-header">
+      <div class="step-header-title">Welcome to Indian Bank</div>
+      <div class="step-logo">🏦</div>
+    </div>
+    <div class="stepper">
+      <div class="step-node"><div class="step-circle done">✓</div><span class="step-label">Mobile</span></div>
+      <div class="step-line done"></div>
+      <div class="step-node"><div class="step-circle active">2</div><span class="step-label active">Verify</span></div>
+      <div class="step-line"></div>
+      <div class="step-node"><div class="step-circle">3</div><span class="step-label">Profile</span></div>
+      <div class="step-line"></div>
+      <div class="step-node"><div class="step-circle">4</div><span class="step-label">Complete</span></div>
+    </div>
+    <div class="step-body">
+      <p style="font-size:14px;color:var(--gray-600);">Enter the 4-digit code sent to <strong>+91 XXXXXX7890</strong></p>
+      <div class="otp-row">
+        <input class="otp-box" type="text" maxlength="1" id="otp1" oninput="otpNext(this,'otp2')">
+        <input class="otp-box" type="text" maxlength="1" id="otp2" oninput="otpNext(this,'otp3')">
+        <input class="otp-box" type="text" maxlength="1" id="otp3" oninput="otpNext(this,'otp4')">
+        <input class="otp-box" type="text" maxlength="1" id="otp4" oninput="otpNext(this,null)">
+      </div>
+      <div style="flex:1"></div>
+      <button class="btn-primary" onclick="showScreen('profile')">Verify</button>
+      <p class="resend-text">Didn't receive code? <span class="resend-link" onclick="toast('OTP resent!')">Resend</span></p>
+      <p class="back-link" onclick="showScreen('register')">← Back</p>
+    </div>
+  </div>
+
+  <!-- ─── REGISTER: PROFILE ─── -->
+  <div class="screen" id="profile">
+    <div class="step-header">
+      <div class="step-header-title">Welcome to Indian Bank</div>
+      <div class="step-logo">🏦</div>
+    </div>
+    <div class="stepper">
+      <div class="step-node"><div class="step-circle done">✓</div><span class="step-label">Mobile</span></div>
+      <div class="step-line done"></div>
+      <div class="step-node"><div class="step-circle done">✓</div><span class="step-label">Verify</span></div>
+      <div class="step-line done"></div>
+      <div class="step-node"><div class="step-circle active">3</div><span class="step-label active">Profile</span></div>
+      <div class="step-line"></div>
+      <div class="step-node"><div class="step-circle">4</div><span class="step-label">Complete</span></div>
+    </div>
+    <div class="step-body">
+      <div style="font-size:24px;font-weight:800;color:var(--gold);">Set Up Your Profile</div>
+      <p style="font-size:13px;color:var(--gray-600);margin-top:-8px;">Tell us a bit about yourself</p>
+      <div class="input-wrap"><input type="text" placeholder="Full name (as per PAN)"></div>
+      <div class="input-wrap"><input type="email" placeholder="Email address"></div>
+      <div class="input-wrap"><input type="text" placeholder="PAN card no." maxlength="10" style="text-transform:uppercase"></div>
+      <div style="flex:1"></div>
+      <button class="btn-primary" onclick="showScreen('success')">Continue</button>
+      <p class="back-link" onclick="showScreen('verify')">← Back</p>
+    </div>
+  </div>
+
+  <!-- ─── SUCCESS ─── -->
+  <div class="screen" id="success">
+    <div class="step-header">
+      <div class="step-header-title">Welcome to Indian Bank</div>
+      <div class="step-logo">🏦</div>
+    </div>
+    <div class="stepper">
+      <div class="step-node"><div class="step-circle done">✓</div><span class="step-label">Mobile</span></div>
+      <div class="step-line done"></div>
+      <div class="step-node"><div class="step-circle done">✓</div><span class="step-label">Verify</span></div>
+      <div class="step-line done"></div>
+      <div class="step-node"><div class="step-circle done">✓</div><span class="step-label">Profile</span></div>
+      <div class="step-line done"></div>
+      <div class="step-node"><div class="step-circle active">4</div><span class="step-label active">Complete</span></div>
+    </div>
+    <div class="success-body">
+      <div class="success-circle">✅</div>
+      <div class="success-title">Registration completed</div>
+      <p class="success-sub">Your account has been created successfully. Welcome to Indian Bank!</p>
+      <div style="height:40px"></div>
+      <button class="btn-primary" onclick="showScreen('home')">Start Banking</button>
+    </div>
+  </div>
+
+  <!-- ─── HOME ─── -->
+  <div class="screen" id="home">
+    <div class="home-header">
+      <div class="avatar">👤</div>
+      <div>
+        <div class="greeting">Namaste, Hamza! 👋</div>
+        <div style="color:rgba(255,255,255,0.5);font-size:11px;">Monday, 11 May 2026</div>
+      </div>
+      <div class="header-icons">
+        <button class="icon-btn" onclick="showScreen('home')">🌙</button>
+        <button class="icon-btn" onclick="showScreen('notifications')" style="position:relative">🔔<span class="badge"></span></button>
+      </div>
+    </div>
+    <div class="card-section">
+      <div class="credit-card">
+        <div class="card-circle"></div>
+        <div class="card-circle2"></div>
+        <div class="card-name">Hamza Khan</div>
+        <div class="card-type">IndOASIS Platinum</div>
+        <div class="card-number">4756 •••• •••• 1007</div>
+        <div class="card-bottom">
+          <div class="card-balance">₹57,894.57</div>
+          <div class="card-scheme">VISA</div>
+        </div>
+      </div>
+    </div>
+    <div class="services-section">
+      <div class="section-title-row">
+        <span class="section-title">Quick Services</span>
+        <span class="see-all">See all</span>
+      </div>
+      <div class="services-grid">
+        <div class="service-tile" onclick="showScreen('profile-settings')"><div class="service-icon">💳</div><div class="service-label">Account & Card</div></div>
+        <div class="service-tile" onclick="showScreen('transfer')"><div class="service-icon">↔️</div><div class="service-label">Transfer</div></div>
+        <div class="service-tile" onclick="toast('Withdraw feature coming soon')"><div class="service-icon">🏧</div><div class="service-label">Withdraw</div></div>
+        <div class="service-tile" onclick="toast('Recharge feature coming soon')"><div class="service-icon">📱</div><div class="service-label">Mobile Prepaid</div></div>
+        <div class="service-tile" onclick="showScreen('paybill')"><div class="service-icon">📋</div><div class="service-label">Pay Bill</div></div>
+        <div class="service-tile" onclick="toast('Save Online feature coming soon')"><div class="service-icon">🐷</div><div class="service-label">Save Online</div></div>
+        <div class="service-tile" onclick="toast('Credit Card features coming soon')"><div class="service-icon">💰</div><div class="service-label">Credit Card</div></div>
+        <div class="service-tile" onclick="showScreen('transactions')"><div class="service-icon">📊</div><div class="service-label">Transaction Report</div></div>
+        <div class="service-tile" onclick="showScreen('transfer')"><div class="service-icon">👥</div><div class="service-label">Beneficiary</div></div>
+      </div>
+    </div>
+    <div style="height:80px"></div>
+    <div class="bottom-nav">
+      <div class="nav-item active" onclick="showScreen('home')"><div class="nav-icon-wrap"><span class="nav-icon">🏠</span></div><span>Home</span></div>
+      <div class="nav-item" onclick="showScreen('transactions')"><span class="nav-icon">🔍</span><span>Search</span></div>
+      <div class="nav-item" onclick="showScreen('notifications')"><span class="nav-icon">✉️</span><span>Messages</span></div>
+      <div class="nav-item" onclick="showScreen('profile-settings')"><span class="nav-icon">⚙️</span><span>Settings</span></div>
+    </div>
+  </div>
+
+  <!-- ─── TRANSACTIONS ─── -->
+  <div class="screen" id="transactions">
+    <div class="page-header">
+      <span style="cursor:pointer;font-size:20px;" onclick="showScreen('home')">←</span>
+      <span class="page-title">Transactions</span>
+      <div class="icon-row">
+        <div class="icon-circle">🔍</div>
+        <div class="icon-circle">⚙️</div>
+      </div>
+    </div>
+    <div class="txn-list">
+      <div class="txn-item">
+        <div class="txn-icon green">💰</div>
+        <div class="txn-info"><div class="txn-name">Cash-in</div><div class="txn-sub">From ABC Bank ATM · ID: 564925374920</div><div class="txn-sub">17 Sep 2023, 10:34 AM</div></div>
+        <div class="txn-right"><div class="txn-amount">+₹1,500</div><span class="txn-status status-ok">confirmed</span></div>
+      </div>
+      <div class="txn-item">
+        <div class="txn-icon red">🛒</div>
+        <div class="txn-info"><div class="txn-name">Cashback from purchase</div><div class="txn-sub">Purchase from Amazon.com · ID: 685746354219</div><div class="txn-sub">16 Sep 2023, 4:08 PM</div></div>
+        <div class="txn-right"><div class="txn-amount">+₹1,200</div><span class="txn-status status-ok">confirmed</span></div>
+      </div>
+      <div class="txn-item">
+        <div class="txn-icon yellow">💳</div>
+        <div class="txn-info"><div class="txn-name">Transfer to card</div><div class="txn-sub">ID: 698094554317</div><div class="txn-sub">16 Sep 2023, 11:21 AM</div></div>
+        <div class="txn-right"><div class="txn-amount">-₹14,200</div><span class="txn-status status-ok">confirmed</span></div>
+      </div>
+      <div class="txn-item">
+        <div class="txn-icon yellow">💳</div>
+        <div class="txn-info"><div class="txn-name">Transfer to card</div><div class="txn-sub">Not enough funds · ID: 097967542786</div><div class="txn-sub">15 Sep 2023, 10:11 AM</div></div>
+        <div class="txn-right"><div class="txn-amount">-₹14,200</div><span class="txn-status status-fail">canceled</span></div>
+      </div>
+      <div class="txn-item">
+        <div class="txn-icon red">🛒</div>
+        <div class="txn-info"><div class="txn-name">Cashback from purchase</div><div class="txn-sub">Purchase from Books.com · ID: 765230978421</div><div class="txn-sub">14 Sep 2023, 6:59 PM</div></div>
+        <div class="txn-right"><div class="txn-amount">+₹94,200</div><span class="txn-status status-ok">confirmed</span></div>
+      </div>
+      <div class="txn-item">
+        <div class="txn-icon yellow">💳</div>
+        <div class="txn-info"><div class="txn-name">Transfer to card</div><div class="txn-sub">ID: 983547829117</div><div class="txn-sub">13 Sep 2023, 10:21 AM</div></div>
+        <div class="txn-right"><div class="txn-amount">-₹67,200</div><span class="txn-status status-ok">confirmed</span></div>
+      </div>
+      <div class="txn-item">
+        <div class="txn-icon yellow">💳</div>
+        <div class="txn-info"><div class="txn-name">Transfer to card</div><div class="txn-sub">Not enough funds · ID: 756375419789</div><div class="txn-sub">12 Sep 2023, 9:00 AM</div></div>
+        <div class="txn-right"><div class="txn-amount">-₹14,200</div><span class="txn-status status-fail">canceled</span></div>
+      </div>
+    </div>
+    <div class="bottom-nav">
+      <div class="nav-item" onclick="showScreen('home')"><span class="nav-icon">🏠</span><span>Home</span></div>
+      <div class="nav-item active" onclick="showScreen('transactions')"><div class="nav-icon-wrap"><span class="nav-icon" style="color:white">🔍</span></div><span>Search</span></div>
+      <div class="nav-item" onclick="showScreen('notifications')"><span class="nav-icon">✉️</span><span>Messages</span></div>
+      <div class="nav-item" onclick="showScreen('profile-settings')"><span class="nav-icon">⚙️</span><span>Settings</span></div>
+    </div>
+  </div>
+
+  <!-- ─── PAY BILL ─── -->
+  <div class="screen" id="paybill">
+    <div class="page-header">
+      <span style="cursor:pointer;font-size:20px;" onclick="showScreen('home')">←</span>
+      <span class="page-title">Pay the Bill</span>
+      <div></div>
+    </div>
+    <div class="bill-list">
+      <div class="bill-card" onclick="showScreen('payscreen')">
+        <div class="bill-left"><div class="bill-title">Electric bill</div><div class="bill-sub">Pay electric bill this month</div></div>
+        <div class="bill-image">⚡</div>
+      </div>
+      <div class="bill-card" onclick="showScreen('payscreen')">
+        <div class="bill-left"><div class="bill-title">Water bill</div><div class="bill-sub">Pay water bill this month</div></div>
+        <div class="bill-image">💧</div>
+      </div>
+      <div class="bill-card" onclick="showScreen('payscreen')">
+        <div class="bill-left"><div class="bill-title">Mobile bill</div><div class="bill-sub">Pay mobile bill this month</div></div>
+        <div class="bill-image">📱</div>
+      </div>
+      <div class="bill-card" onclick="showScreen('payscreen')">
+        <div class="bill-left"><div class="bill-title">Internet bill</div><div class="bill-sub">Pay internet bill this month</div></div>
+        <div class="bill-image">🌐</div>
+      </div>
+      <div class="bill-card" onclick="toast('Gas bill feature coming soon')">
+        <div class="bill-left"><div class="bill-title">Gas bill</div><div class="bill-sub">Pay gas bill this month</div></div>
+        <div class="bill-image">🔥</div>
+      </div>
+    </div>
+    <div class="bottom-nav">
+      <div class="nav-item" onclick="showScreen('home')"><span class="nav-icon">🏠</span><span>Home</span></div>
+      <div class="nav-item" onclick="showScreen('transactions')"><span class="nav-icon">🔍</span><span>Search</span></div>
+      <div class="nav-item" onclick="showScreen('notifications')"><span class="nav-icon">✉️</span><span>Messages</span></div>
+      <div class="nav-item" onclick="showScreen('profile-settings')"><span class="nav-icon">⚙️</span><span>Settings</span></div>
+    </div>
+  </div>
+
+  <!-- ─── PAYMENT SCREEN ─── -->
+  <div class="screen" id="payscreen">
+    <div class="page-header">
+      <span style="cursor:pointer;font-size:20px;" onclick="showScreen('paybill')">←</span>
+      <span class="page-title">Electric Payment</span>
+      <div></div>
+    </div>
+    <div class="payment-detail">
+      <div class="detail-card">
+        <div class="detail-row"><span class="detail-label">Name</span><span class="detail-val">Fatima Faheem Kazi</span></div>
+        <div class="detail-row"><span class="detail-label">Address</span><span class="detail-val">Santacruz, Mumbai - 400054</span></div>
+        <div class="detail-row"><span class="detail-label">Phone number</span><span class="detail-val">+91 9876541006</span></div>
+        <div class="detail-row"><span class="detail-label">Code</span><span class="detail-val">#2343543</span></div>
+        <div class="detail-row"><span class="detail-label">From</span><span class="detail-val">01/10/2019</span></div>
+        <div class="detail-row"><span class="detail-label">To</span><span class="detail-val">01/11/2019</span></div>
+      </div>
+      <div class="detail-card">
+        <div class="detail-row"><span class="detail-label">Internet fee</span><span class="detail-val" style="color:var(--navy-mid)">₹50</span></div>
+        <div class="detail-row"><span class="detail-label">Tax</span><span class="detail-val" style="color:var(--navy-mid)">₹10</span></div>
+        <div class="total-row"><span>TOTAL</span><span class="total-amount">₹60</span></div>
+      </div>
+      <button class="btn-primary" onclick="paymentSuccess()">Pay ₹60 Now</button>
+      <button class="btn-outline" style="width:100%;margin-top:4px;" onclick="showScreen('payhistory')">View Payment History</button>
+      <p style="text-align:center;font-size:11px;color:var(--gray-400);margin-top:12px;">Help and Support</p>
+    </div>
+  </div>
+
+  <!-- ─── PAYMENT HISTORY ─── -->
+  <div class="screen" id="payhistory">
+    <div class="page-header">
+      <span style="cursor:pointer;font-size:20px;" onclick="showScreen('payscreen')">←</span>
+      <span class="page-title">Payment History</span>
+      <div></div>
+    </div>
+    <div class="filter-tabs">
+      <button class="filter-tab active" onclick="filterTab(this)">Electric</button>
+      <button class="filter-tab" onclick="filterTab(this)">Water</button>
+      <button class="filter-tab" onclick="filterTab(this)">Mobile</button>
+      <button class="filter-tab" onclick="filterTab(this)">Internet</button>
+      <button class="filter-tab" onclick="filterTab(this)">Gas</button>
+    </div>
+    <div class="history-list">
+      <div class="history-card"><span class="history-month">October</span><span class="history-date">30/10/2019</span><div class="history-row"><span>Status <span class="history-status-fail">Unsuccessfully</span></span><span>Amount <strong>₹480</strong></span></div></div>
+      <div class="history-card"><span class="history-month">September</span><span class="history-date">30/09/2019</span><div class="history-row"><span>Status <span class="history-status-ok">Successfully</span></span><span>Amount <strong>₹480</strong></span></div></div>
+      <div class="history-card"><span class="history-month">August</span><span class="history-date">30/08/2019</span><div class="history-row"><span>Status <span class="history-status-ok">Successfully</span></span><span>Amount <strong>₹480</strong></span></div></div>
+      <div class="history-card"><span class="history-month">July</span><span class="history-date">30/07/2019</span><div class="history-row"><span>Status <span class="history-status-ok">Successfully</span></span><span>Amount <strong>₹480</strong></span></div></div>
+      <div class="history-card"><span class="history-month">June</span><span class="history-date">30/06/2019</span><div class="history-row"><span>Status <span class="history-status-ok">Successfully</span></span><span>Amount <strong>₹480</strong></span></div></div>
+      <div class="history-card"><span class="history-month">May</span><span class="history-date">30/05/2019</span><div class="history-row"><span>Status <span class="history-status-ok">Successfully</span></span><span>Amount <strong>₹480</strong></span></div></div>
+    </div>
+  </div>
+
+  <!-- ─── NOTIFICATIONS ─── -->
+  <div class="screen" id="notifications">
+    <div class="page-header">
+      <span style="cursor:pointer;font-size:20px;" onclick="showScreen('home')">←</span>
+      <span class="page-title">Notifications</span>
+      <div></div>
+    </div>
+    <div style="padding:12px 20px 0;font-size:12px;color:var(--gray-400);font-weight:600;text-transform:uppercase;letter-spacing:1px;">Today</div>
+    <div class="notif-list">
+      <div class="notif-item">
+        <div class="notif-avatar">👩</div>
+        <div style="flex:1"><div class="notif-text">You received a payment of <span>₹2,500</span> from <span>Fatima Kazi</span></div><span class="notif-time">9:01am</span></div>
+      </div>
+      <div class="notif-item">
+        <div class="notif-avatar">👩</div>
+        <div style="flex:1"><div class="notif-text"><span>Fatima Kazi</span> requested a payment of <span>₹1,200</span></div><span class="notif-time">10:30am</span></div>
+        <button class="notif-pay" onclick="toast('Payment of ₹1,200 sent to Fatima Kazi')">PAY</button>
+      </div>
+      <div class="notif-item">
+        <div class="notif-avatar">🧔</div>
+        <div style="flex:1"><div class="notif-text"><span>Vatsal</span> requested a payment of <span>780.1</span></div><span class="notif-time">9:01am</span></div>
+        <button class="notif-pay" onclick="toast('Payment of ₹780.1 sent to Vatsal')">PAY</button>
+      </div>
+      <div class="notif-item">
+        <div class="notif-avatar">👨‍🦱</div>
+        <div style="flex:1"><div class="notif-text"><span>Dhruv</span> requested a payment of <span>1,780.1</span></div><span class="notif-time">9:01am</span></div>
+        <button class="notif-pay" onclick="toast('Payment of ₹1,780.1 sent to Dhruv')">PAY</button>
+      </div>
+    </div>
+    <div class="faq-section">
+      <div class="faq-title">FAQ (Frequently Asked Questions):</div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">1. How do I change my Vibe Mode (Dark Mode) setting? <span class="faq-arrow">⌄</span></div>
+        <div class="faq-a">Go to Settings → Appearance → Toggle "Vibe Mode" to enable or disable dark mode. Your preference is saved automatically.</div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">2. What are the daily transfer limits? <span class="faq-arrow">⌄</span></div>
+        <div class="faq-a">Standard accounts: ₹1,00,000/day via NEFT/IMPS. Premium accounts: ₹5,00,000/day. Contact your branch to upgrade your limit.</div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">3. I forgot my Login PIN or Password. What should I do? <span class="faq-arrow">⌄</span></div>
+        <div class="faq-a">Tap "Forgot Password" on the login screen. Enter your registered mobile number to receive an OTP and reset your PIN.</div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">4. How do I add a new beneficiary? <span class="faq-arrow">⌄</span></div>
+        <div class="faq-a">Go to Transfer → Beneficiary → Add New. Enter the account holder's name, account number, and IFSC code. Verification takes up to 30 minutes.</div>
+      </div>
+    </div>
+    <div class="bottom-nav">
+      <div class="nav-item" onclick="showScreen('home')"><span class="nav-icon">🏠</span><span>Home</span></div>
+      <div class="nav-item" onclick="showScreen('transactions')"><span class="nav-icon">🔍</span><span>Search</span></div>
+      <div class="nav-item active" onclick="showScreen('notifications')"><div class="nav-icon-wrap"><span class="nav-icon" style="color:white">✉️</span></div><span>Messages</span></div>
+      <div class="nav-item" onclick="showScreen('profile-settings')"><span class="nav-icon">⚙️</span><span>Settings</span></div>
+    </div>
+  </div>
+
+  <!-- ─── TRANSFER ─── -->
+  <div class="screen" id="transfer">
+    <div class="page-header">
+      <span style="cursor:pointer;font-size:20px;" onclick="showScreen('home')">←</span>
+      <span class="page-title">Transfer Money</span>
+      <div></div>
+    </div>
+    <div class="transfer-section">
+      <div>
+        <div class="field-label">Recipient UPI / Account No.</div>
+        <div class="input-wrap"><input type="text" placeholder="Enter UPI ID or account number"></div>
+      </div>
+      <div>
+        <div class="field-label">Amount (₹)</div>
+        <div class="input-wrap"><input type="number" placeholder="0.00"></div>
+      </div>
+      <div>
+        <div class="field-label">Remarks (optional)</div>
+        <div class="input-wrap"><input type="text" placeholder="e.g. Rent payment"></div>
+      </div>
+      <button class="btn-primary" onclick="toast('Transfer initiated successfully!')">Send Money</button>
+      <div style="margin-top:8px">
+        <div class="section-title-row"><span class="section-title">Saved Beneficiaries</span><span class="see-all" onclick="toast('Manage beneficiaries')">Manage</span></div>
+        <div class="beneficiary-list">
+          <div class="beneficiary-card"><div class="bene-avatar">F</div><div><div class="bene-name">Fatima Kazi</div><div class="bene-acc">•••• 1006 · Indian Bank</div></div><button class="bene-send" onclick="toast('Sending to Fatima Kazi')">Send</button></div>
+          <div class="beneficiary-card"><div class="bene-avatar">V</div><div><div class="bene-name">Vatsal Sharma</div><div class="bene-acc">•••• 7890 · HDFC</div></div><button class="bene-send" onclick="toast('Sending to Vatsal Sharma')">Send</button></div>
+          <div class="beneficiary-card"><div class="bene-avatar">D</div><div><div class="bene-name">Dhruv Mehta</div><div class="bene-acc">•••• 3312 · ICICI</div></div><button class="bene-send" onclick="toast('Sending to Dhruv Mehta')">Send</button></div>
+          <div class="beneficiary-card"><div class="bene-avatar">L</div><div><div class="bene-name">Lalita Dhavale</div><div class="bene-acc">•••• 1354 · Indian Bank</div></div><button class="bene-send" onclick="toast('Sending to Lalita Dhavale')">Send</button></div>
+        </div>
+      </div>
+    </div>
+    <div class="bottom-nav">
+      <div class="nav-item" onclick="showScreen('home')"><span class="nav-icon">🏠</span><span>Home</span></div>
+      <div class="nav-item active" onclick=""><div class="nav-icon-wrap"><span class="nav-icon" style="color:white">↔️</span></div><span>Transfer</span></div>
+      <div class="nav-item" onclick="showScreen('notifications')"><span class="nav-icon">✉️</span><span>Messages</span></div>
+      <div class="nav-item" onclick="showScreen('profile-settings')"><span class="nav-icon">⚙️</span><span>Settings</span></div>
+    </div>
+  </div>
+
+  <!-- ─── PROFILE SETTINGS ─── -->
+  <div class="screen" id="profile-settings">
+    <div class="page-header">
+      <span style="cursor:pointer;font-size:20px;" onclick="showScreen('home')">←</span>
+      <span class="page-title">My Profile</span>
+      <div></div>
+    </div>
+    <div class="profile-section">
+      <div class="profile-card">
+        <div class="profile-avatar">👤</div>
+        <div>
+          <div class="profile-name">Hamza Khan</div>
+          <div class="profile-acc">•••• •••• 1007</div>
+          <div style="display:flex;gap:6px;margin-top:6px;"><span style="background:rgba(108,99,255,0.1);color:var(--navy-mid);border-radius:20px;padding:2px 10px;font-size:10px;font-weight:600;">Premium</span></div>
+        </div>
+        <button class="profile-edit" onclick="toast('Edit profile coming soon')">Edit</button>
+      </div>
+      <div class="menu-section">
+        <div class="menu-item" onclick="toast('Account details')"><span class="menu-icon">🏦</span><span class="menu-label">Account Details</span><span class="menu-arrow">›</span></div>
+        <div class="menu-item" onclick="toast('Linked cards')"><span class="menu-icon">💳</span><span class="menu-label">Linked Cards</span><span class="menu-arrow">›</span></div>
+        <div class="menu-item" onclick="showScreen('transfer')"><span class="menu-icon">👥</span><span class="menu-label">Beneficiaries</span><span class="menu-arrow">›</span></div>
+        <div class="menu-item" onclick="toast('Notifications settings')"><span class="menu-icon">🔔</span><span class="menu-label">Notification Settings</span><span class="menu-arrow">›</span></div>
+        <div class="menu-item" onclick="showScreen('vibe')"><span class="menu-icon">✦</span><span class="menu-label">Vibe Mode (Dark)</span><span class="menu-arrow">›</span></div>
+        <div class="menu-item" onclick="toast('Security settings')"><span class="menu-icon">🔐</span><span class="menu-label">Security & Privacy</span><span class="menu-arrow">›</span></div>
+        <div class="menu-item" onclick="showScreen('notifications')"><span class="menu-icon">❓</span><span class="menu-label">Help & FAQ</span><span class="menu-arrow">›</span></div>
+        <div class="menu-item" onclick="showScreen('login')"><span class="menu-icon">🚪</span><span class="menu-label" style="color:var(--danger)">Logout</span><span class="menu-arrow">›</span></div>
+      </div>
+    </div>
+    <div class="bottom-nav">
+      <div class="nav-item" onclick="showScreen('home')"><span class="nav-icon">🏠</span><span>Home</span></div>
+      <div class="nav-item" onclick="showScreen('transactions')"><span class="nav-icon">🔍</span><span>Search</span></div>
+      <div class="nav-item" onclick="showScreen('notifications')"><span class="nav-icon">✉️</span><span>Messages</span></div>
+      <div class="nav-item active" onclick="showScreen('profile-settings')"><div class="nav-icon-wrap"><span class="nav-icon" style="color:white">⚙️</span></div><span>Settings</span></div>
+    </div>
+  </div>
+
+  <!-- ─── VIBE MODE ─── -->
+  <div class="screen" id="vibe">
+    <div class="vibe-header">
+      <div class="vibe-badge">Indian Bank</div>
+      <div class="vibe-icons">
+        <button class="vibe-icon-btn" onclick="showScreen('home')" title="Light Mode">☀️</button>
+        <button class="vibe-icon-btn">🏆</button>
+        <button class="vibe-icon-btn" style="position:relative">🔔<span style="position:absolute;top:4px;right:4px;width:8px;height:8px;background:#e74c3c;border-radius:50%;border:1px solid var(--vibe-bg)"></span></button>
+      </div>
+    </div>
+    <div class="vibe-user">
+      <div class="vibe-avatar">👤</div>
+      <div>
+        <div class="vibe-user-name">Hello, Hamza</div>
+        <div class="vibe-user-date">Sunday, 18 May</div>
+      </div>
+    </div>
+    <div class="vibe-balance-card">
+      <button class="vibe-eye" onclick="toast('Balance hidden')">👁</button>
+      <div class="vibe-acc-label">Savings Account</div>
+      <div class="vibe-acc-num">xxxx xxxx 1007</div>
+      <div class="vibe-bal-label">Available Balance</div>
+      <div class="vibe-amount">₹1,45,740</div>
+    </div>
+    <div class="vibe-services">
+      <div class="vibe-tile" onclick="toast('Globe Pay')"><div class="vibe-tile-icon globe">🌐</div><div class="vibe-tile-label">Globe Pay</div></div>
+      <div class="vibe-tile" onclick="showScreen('transfer')"><div class="vibe-tile-icon send">↗️</div><div class="vibe-tile-label">Send</div></div>
+      <div class="vibe-tile" onclick="toast('Withdraw')"><div class="vibe-tile-icon atm">🏧</div><div class="vibe-tile-label">Withdraw</div></div>
+      <div class="vibe-tile" onclick="toast('Recharge')"><div class="vibe-tile-icon phone">📱</div><div class="vibe-tile-label">Recharge</div></div>
+      <div class="vibe-tile" onclick="showScreen('paybill')"><div class="vibe-tile-icon bill">📋</div><div class="vibe-tile-label">Pay Bill</div></div>
+      <div class="vibe-tile" onclick="toast('TopUp')"><div class="vibe-tile-icon topup">⬆️</div><div class="vibe-tile-label">TopUp</div></div>
+    </div>
+    <div class="vibe-quick-send">
+      <div class="vibe-section-title">Quick Send</div>
+      <div class="quick-contacts">
+        <div class="contact-item"><div class="contact-avatar">👩</div><div class="contact-name">Fatima</div></div>
+        <div class="contact-item"><div class="contact-avatar">👦</div><div class="contact-name">Vatsal</div></div>
+        <div class="contact-item"><div class="contact-avatar">👨</div><div class="contact-name">Dhruv</div></div>
+        <div class="contact-item"><div class="contact-avatar">👨‍🦲</div><div class="contact-name">Rajeev</div></div>
+        <div class="contact-item"><div class="add-contact">+</div><div class="contact-name" style="color:rgba(255,255,255,0.4)">Add</div></div>
+      </div>
+    </div>
+    <div class="vibe-history-card">
+      <div class="vibe-hist-title">Payment History — 2025 May</div>
+      <div class="vibe-hist-item"><div class="vibe-hist-logo">D</div><div class="vibe-hist-name">Dmart</div><div class="vibe-hist-amount">₹400</div></div>
+      <div class="vibe-hist-item"><div class="vibe-hist-logo">M</div><div class="vibe-hist-name">McDonalds</div><div class="vibe-hist-amount">₹670</div></div>
+    </div>
+    <div class="vibe-stats-row">
+      <div class="vibe-stat-card"><div class="vibe-stat-amount">₹86,000</div><div class="vibe-stat-label">Left to spend</div></div>
+      <div class="vibe-stat-card"><div class="vibe-stat-amount">₹7,636</div><div class="vibe-stat-label">Per day</div></div>
+    </div>
+    <div class="vibe-bills-section">
+      <div class="vibe-bills-title">Bills Due</div>
+      <div class="vibe-bills-grid">
+        <div class="vibe-bill-card" onclick="toast('Netflix ₹800 due')"><div class="vibe-bill-icon">🎬</div><div class="vibe-bill-name">Netflix</div><div class="vibe-bill-amt">₹800</div></div>
+        <div class="vibe-bill-card" onclick="toast('Airtel ₹2900 due')"><div class="vibe-bill-icon">📡</div><div class="vibe-bill-name">Airtel</div><div class="vibe-bill-amt">₹2,900</div></div>
+        <div class="vibe-bill-card" onclick="toast('Prime ₹600 due')"><div class="vibe-bill-icon">📦</div><div class="vibe-bill-name">Prime</div><div class="vibe-bill-amt">₹600</div></div>
+      </div>
+    </div>
+    <div style="height:16px"></div>
+    <div class="vibe-bottom-nav">
+      <div class="vibe-nav-item active"><span class="vibe-nav-icon">🏠</span><span>Home</span></div>
+      <div class="vibe-nav-item" onclick="showScreen('transfer')"><span class="vibe-nav-icon">↔️</span><span>Transfers</span></div>
+      <div class="vibe-nav-item" onclick="showScreen('transactions')"><span class="vibe-nav-icon">💳</span><span>Accounts</span></div>
+      <div class="vibe-nav-item" onclick="showScreen('notifications')"><span class="vibe-nav-icon">💬</span><span>Support</span></div>
+      <div class="vibe-nav-item" onclick="showScreen('profile-settings')"><span class="vibe-nav-icon">☰</span><span>More</span></div>
+    </div>
+  </div>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast"></div>
+
+</div>
+
+<script>
+  // ─── SCREEN ROUTER ───
+  function showScreen(id) {
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    const el = document.getElementById(id);
+    if (el) { el.classList.add('active'); el.scrollTop = 0; }
+  }
+
+  // ─── LOGIN ───
+  function doLogin() {
+    const m = document.getElementById('loginMobile').value;
+    const p = document.getElementById('loginPassword').value;
+    if (!m && !p) { showScreen('home'); return; }
+    if (m.length < 10) { toast('Enter a valid 10-digit mobile number'); return; }
+    if (!p) { toast('Please enter your password'); return; }
+    showScreen('home');
+  }
+
+  function togglePw() {
+    const inp = document.getElementById('loginPassword');
+    inp.type = inp.type === 'password' ? 'text' : 'password';
+  }
+
+  // ─── OTP ───
+  function otpNext(el, nextId) {
+    if (el.value.length === 1 && nextId) {
+      document.getElementById(nextId).focus();
+    }
+  }
+
+  // ─── FAQ ───
+  function toggleFaq(el) {
+    el.classList.toggle('open');
+  }
+
+  // ─── FILTER TABS ───
+  function filterTab(el) {
+    document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+    el.classList.add('active');
+  }
+
+  // ─── PAYMENT SUCCESS ───
+  function paymentSuccess() {
+    toast('✅ Payment of ₹60 successful!');
+    setTimeout(() => showScreen('payhistory'), 1200);
+  }
+
+  // ─── TOAST ───
+  let toastTimer;
+  function toast(msg) {
+    const el = document.getElementById('toast');
+    el.textContent = msg;
+    el.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => el.classList.remove('show'), 2500);
+  }
+
+  // ─── SPLASH ANIMATION ───
+  setTimeout(() => showScreen('onboard'), 2200);
+</script>
+</body>
+</html>
